@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
+    <title>Weather Analytics</title>
+</head>
+<body>
+        <h1 align="center">Weather Analytics</h1>
+       <table align="center">
+           <tr>
+               <th colspan="2" rowspan="2">Прогноз погоды на 10 дней</th>
+               <th colspan="2">Яндекс погода</th>
+               <th colspan="2">Mail.ru погода</th>
+               <th colspan="2">Gismeteo</th>
+           </tr>
+           <tr>
+               <th>День</th>
+               <th>Ночь</th>
+               <th>День</th>
+               <th>Ночь</th>
+               <th>День</th>
+               <th>Ночь</th>
+           </tr>
+           {% for i in days %}
+           <tr>
+               <th rowspan="4" width="50">{{i.day_name}}</th>
+               <th>Градусы °</th>
+               {% for n in range(6) %}
+               <td style="color: {{'red' if i.degrees[n] > 0 else ('blue' if i.degrees[n] < 0 else 'black')}}; background:{{'#c4ebff' if n % 2 else 'white'}}">{{i.degrees[n]}}</td>
+               {% endfor %}
+           </tr>
+           <tr>
+               <th>Скорость ветра, м/с</th>
+               {% for n in range(6) %}
+               <td>{{i.wind[n]}}</td>
+               {% endfor %}
+           </tr>
+           <tr>
+               <th>Давление, мм рт. ст.</th>
+               {% for n in range(6) %}
+               <td>{{i.pressure[n]}}</td>
+               {% endfor %}
+           </tr>
+           <tr>
+               <th>Влажность %</th>
+               {% for n in range(6) %}
+               <td>{{i.humidity[n]}}</td>
+               {% endfor %}
+           </tr>
+           {% endfor %}
+       </table>
+
+
+</body>
+</html>
+

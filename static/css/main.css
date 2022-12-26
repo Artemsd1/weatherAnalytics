@@ -1,0 +1,29 @@
+h1{
+    font-family: sans-serif;
+}
+
+table{
+    font-family: sans-serif;
+    text-align: center;
+    border-collapse: collapse;
+    border: 10px solid #d8e6f3;
+}
+
+th, td:first-child{
+    background: #afcde7;
+    color: white;
+    padding: 10px 10px;
+    font-family: sans-serif;
+}
+
+th, td{
+    border-style: solid;
+    border-width: 2 2px 2px 0;
+    border-color: white;
+}
+
+td{
+
+    background: #d8e6f3;
+}
+
