@@ -13,9 +13,22 @@
        <table align="center">
            <tr>
                <th colspan="2" rowspan="2">Прогноз погоды на 10 дней</th>
-               <th colspan="2">Яндекс погода</th>
-               <th colspan="2">Mail.ru погода</th>
-               <th colspan="2">Gismeteo</th>
+               <th colspan="2">
+                  <a href="https://yandex.ru/pogoda/details/10-day-weather?lat=48.707068&lon=44.516979&via=ms" style="color:white">
+                      Яндекс погода
+                  </a>
+               </th>
+               <th colspan="2">
+                   <a href="https://pogoda.mail.ru/prognoz/volgograd/14dney/" style="color:white">
+                       Mail.ru погода
+                   </a>
+               </th>
+               <th colspan="2">
+                   <a href="https://www.gismeteo.ru/weather-volgograd-5089/10-days/" style="color:white">
+                       Gismeteo
+                   </a>
+               </th>
+               <th colspan="2" rowspan="2" width="20">Среднесуточное значение</th>
            </tr>
            <tr>
                <th>День</th>
@@ -27,30 +40,41 @@
            </tr>
            {% for i in days %}
            <tr>
-               <th rowspan="4" width="50">{{i.day_name}}</th>
+               <th rowspan="5" width="50">{{i.day_name}}</th>
                <th>Градусы °</th>
-               {% for n in range(6) %}
-               <td style="color: {{'red' if i.degrees[n] > 0 else ('blue' if i.degrees[n] < 0 else 'black')}}; background:{{'#c4ebff' if n % 2 else 'white'}}">{{i.degrees[n]}}</td>
+               {% for n in range(7) %}
+               <td style="background:{{'#9fb6f3' if n % 2}}">
+                   {{color_by_sign(i.degrees[n])|safe}}
+               </td>
                {% endfor %}
            </tr>
            <tr>
                <th>Скорость ветра, м/с</th>
-               {% for n in range(6) %}
-               <td>{{i.wind[n]}}</td>
+               {% for n in range(7) %}
+               <td style="background:{{'#9fb6f3' if n % 2}}">{{i.wind[n]|safe}}</td>
                {% endfor %}
            </tr>
            <tr>
                <th>Давление, мм рт. ст.</th>
-               {% for n in range(6) %}
-               <td>{{i.pressure[n]}}</td>
+               {% for n in range(7) %}
+               <td style="background:{{'#9fb6f3' if n % 2}}">{{i.pressure[n]|safe}}</td>
                {% endfor %}
            </tr>
            <tr>
                <th>Влажность %</th>
-               {% for n in range(6) %}
-               <td>{{i.humidity[n]}}</td>
+               {% for n in range(7) %}
+               <td style="background:{{'#9fb6f3' if n % 2}}">{{i.humidity[n]|safe}}</td>
                {% endfor %}
            </tr>
+            <tr>
+               <th>Ощущается как</th>
+               {% for n in range(7) %}
+               <td style="background:{{'#9fb6f3' if n % 2}}">{{color_by_sign(i.weather_feels[n])|safe}}</td>
+               {% endfor %}
+           </tr>
+           {% if n != 10%}
+           <tr><td colspan="9" style="background:   #d8e6f3"> </td></tr>
+           {% endif %}
            {% endfor %}
        </table>
 

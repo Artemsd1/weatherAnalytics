@@ -5,6 +5,7 @@ class Day:
         self.wind = []
         self.pressure = []
         self.humidity = []
+        self.weather_feels = []
 
     def add_degrees(self, degree_value):
         self.degrees.append(degree_value)
@@ -17,3 +18,6 @@ class Day:
 
     def add_humidity(self, humidity_value):
         self.humidity.append(humidity_value)
+
+    def add_weather_feels(self, weather_feels_value):
+        self.weather_feels.append(weather_feels_value)
